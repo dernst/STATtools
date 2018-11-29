@@ -93,10 +93,7 @@
 gcdrecode <- function(year, gcd, targetyear = 2018,
                       invalid = "NA"){
   ## invalid can be "NA", "orig" or sth else
-  ## data("gcdnum", envir = environment()) # gcdnum must be char!
-  ## Line above not needed if "LazyData: true" in DESCRIPTION
-  ## system.file("extdata", "gcd.csv", package = "gcd")
-  ## http://stackoverflow.com/questions/10492747/data-inside-a-function-package-creation
+  utils::data("gcdnum", package="STATtools")
   if(length(invalid) != 1){
     stop("'invalid' has to be of length 1")
   }
@@ -118,7 +115,7 @@ gcdrecode <- function(year, gcd, targetyear = 2018,
   if(targetyear == 2014) targetyear <- 2013
   validty <- c(2011, 2012, 2013, 2015, 2016, 2017, 2018)
   y <- sub(20, "GKZ", year)
-  reflist <- get("gcdnum") # to avoid the NOTE
+  reflist <- get("gcdnum")
   if(!targetyear %in% validty){
     targetyear <- 2018
     warning(paste("Unvalid targetyear. I set it to 2018.\n",
